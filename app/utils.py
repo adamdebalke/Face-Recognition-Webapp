@@ -1,3 +1,22 @@
+import numpy as np
+#import pandas as pd
+#import matplotlib.pyplot as plt
+import sklearn
+import pickle
+import cv2
+
+haar = cv2.CascadeClassifier('./model/haarcascade_frontalface_default.xml')
+# pickle files
+mean  = pickle.load(open('./model/mean_preprocess.pickle','rb'))
+model_svm  = pickle.load(open('./model/model_svm.pickle','rb'))
+model_pca  = pickle.load(open('./model/pca_50.pickle','rb'))
+
+print('Model loaded sucessfully')
+
+# settins
+gender_pre = ['Male','Female']
+font = cv2.FONT_HERSHEY_SIMPLEX
+
 def pipeline_model(path,filename,color='bgr'):
     # step-1: read image in cv2
     img = cv2.imread(path)
